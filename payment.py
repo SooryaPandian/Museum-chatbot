@@ -142,6 +142,11 @@ if st.button("Send"):
                 </form>
             """, unsafe_allow_html=True)
 
+        elif st.session_state.current_step == 6:
+            # Final step: Summarize user details
+            st.session_state.chat_history.append({"role": "assistant", "content": f"Here are the details you've provided:\n\n**Name**: {st.session_state.booking_details['name']}\n**Gender**: {st.session_state.booking_details['gender']}\n**Number of Tickets**: {st.session_state.booking_details['num_tickets']}\n**Date of Visit**: {st.session_state.booking_details['date_of_visit']}\n**Email**: {st.session_state.booking_details['email']}\n\nPlease review the details and proceed with payment."})
+            st.session_state.current_step += 1
+
     except Exception as e:
         st.error(f"An error occurred: {e}")
 
